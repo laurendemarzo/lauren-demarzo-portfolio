@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lauren DeMarzo, MSHC — Health Communication Portfolio</title>
+<style>
+  /* ─── TOKENS ─────────────────────────────────────────── */
+  :root {
+    --navy:      #0B2054;   /* MSK-adjacent deep navy       */
+    --teal:      #1A7A8A;   /* warm clinical teal accent    */
+    --sky:       #E8F4F7;   /* very light teal for sections */
+    --ivory:     #FAFAF7;   /* warm off-white base          */
+    --slate:     #3D4F6B;   /* secondary text               */
+    --mid:       #6B7FA3;   /* captions / meta              */
+    --rule:      #D0DCE8;   /* dividers                     */
+    --white:     #FFFFFF;
+    --highlight: #B5E3EB;   /* tag/pill fill                */
+
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body:    'Helvetica Neue', Arial, sans-serif;
+
+    --radius: 6px;
+    --max:    860px;
+  }
+
+  /* ─── RESET / BASE ───────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ivory);
+    color: var(--navy);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  /* ─── NAV ────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 100;
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    gap: 16px;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); text-decoration: none; }
+
+  /* ─── HERO ───────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    padding: 64px 24px 56px;
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-photo {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--teal);
+    flex-shrink: 0;
+  }
+  .hero-text {}
+  .hero-eyebrow {
+    color: var(--teal);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .hero-name span {
+    color: var(--teal);
+    font-style: italic;
+  }
+  .hero-tagline {
+    color: rgba(255,255,255,0.78);
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin-bottom: 24px;
+  }
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── PULSE RULE (signature) ─────────────────────────── */
+  /* A single horizontal heartbeat line — references the health domain */
+  .pulse-divider {
+    width: 100%;
+    overflow: hidden;
+    height: 28px;
+    background: var(--navy);
+  }
+  .pulse-divider svg { display: block; width: 100%; height: 28px; }
+
+  /* ─── SECTION SHELL ──────────────────────────────────── */
+  section { padding: 64px 24px; }
+  .inner { max-width: var(--max); margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.8vw, 1.8rem);
+    color: var(--navy);
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+
+  /* ─── ABOUT ──────────────────────────────────────────── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-bio p {
+    color: var(--slate);
+    margin-bottom: 16px;
+    font-size: 1.02rem;
+  }
+  .about-meta h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+  }
+  .about-meta ul {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .about-meta ul li {
+    color: var(--slate);
+    font-size: 0.9rem;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 8px;
+  }
+  .about-meta ul li::before {
+    content: '→';
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  /* word cloud recognition card */
+  .word-cloud-card {
+    background: var(--sky);
+    border-left: 3px solid var(--teal);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-top: 8px;
+  }
+  .word-cloud-card p {
+    font-size: 0.88rem;
+    color: var(--slate);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .cloud-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cloud-words span {
+    background: var(--highlight);
+    color: var(--navy);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  /* ─── WORK SAMPLES ───────────────────────────────────── */
+  #work { background: var(--ivory); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .work-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .work-card:hover {
+    box-shadow: 0 6px 24px rgba(11,32,84,0.10);
+    transform: translateY(-2px);
+  }
+  .work-card-header {
+    background: var(--navy);
+    padding: 18px 20px 14px;
+  }
+  .work-type {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .work-card-header h3 {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .work-card-body {
+    padding: 16px 20px 20px;
+  }
+  .work-role {
+    font-size: 0.78rem;
+    color: var(--mid);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .work-card-body p {
+    font-size: 0.9rem;
+    color: var(--slate);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .work-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+  .skill-tag {
+    background: var(--sky);
+    color: var(--teal);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.74rem;
+    font-weight: 500;
+  }
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+  .work-link::after { content: ' →'; }
+
+  /* ─── MSK DISEASE GUIDES ─────────────────────────────── */
+  #disease-guides { background: var(--sky); }
+  .guides-intro {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 620px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .attribution-note {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--teal);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    font-size: 0.83rem;
+    color: var(--mid);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .guides-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .guide-item {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.2s;
+  }
+  .guide-item:hover { box-shadow: 0 4px 16px rgba(11,32,84,0.08); }
+  .guide-topic {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .guide-item h3 {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .guide-item p {
+    font-size: 0.86rem;
+    color: var(--slate);
+    line-height: 1.55;
+    flex: 1;
+  }
+  .guide-role {
+    font-size: 0.78rem;
+    color: var(--mid);
+    font-style: italic;
+  }
+  .guide-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+  .guide-link:hover { text-decoration: underline; }
+
+  /* ─── EXPERIENCE ─────────────────────────────────────── */
+  #experience { background: var(--white); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--rule);
+  }
+  .timeline-item {
+    padding-left: 28px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--teal);
+  }
+  .timeline-date {
+    font-size: 0.76rem;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .timeline-role {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .timeline-org {
+    font-size: 0.88rem;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .timeline-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .timeline-bullets li {
+    font-size: 0.9rem;
+    color: var(--slate);
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .timeline-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 1.2em;
+    line-height: 1.3;
+  }
+
+  /* ─── SKILLS ─────────────────────────────────────────── */
+  #skills { background: var(--ivory); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .skill-group {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .skill-group h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-group ul {
+    list-style: none;
+  }
+  .skill-group ul li {
+    font-size: 0.88rem;
+    color: var(--slate);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-group ul li:last-child { border-bottom: none; }
+
+  /* ─── EDUCATION ──────────────────────────────────────── */
+  #education { background: var(--white); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .edu-card {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .edu-card .year {
+    font-size: 0.74rem;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .edu-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .edu-card .school {
+    font-size: 0.88rem;
+    color: var(--teal);
+  }
+  .pd-list {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .pd-list h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .pd-list ul {
+    list-style: none;
+    columns: 2;
+    gap: 16px;
+  }
+  .pd-list ul li {
+    font-size: 0.88rem;
+    color: var(--slate);
+    padding: 4px 0;
+    break-inside: avoid;
+  }
+  .pd-list ul li::before { content: '→ '; color: var(--teal); }
+
+  /* ─── LEADERSHIP ─────────────────────────────────────── */
+  #leadership { background: var(--sky); }
+  .leadership-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  .leadership-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .leadership-card .sub {
+    font-size: 0.85rem;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .leadership-card p {
+    font-size: 0.92rem;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .leadership-stat {
+    text-align: center;
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    min-width: 120px;
+  }
+  .leadership-stat .num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .leadership-stat .label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── CONTACT ────────────────────────────────────────── */
+  #contact {
+    background: var(--navy);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  #contact .section-label { color: var(--teal); }
+  #contact .section-title { color: var(--white); margin-bottom: 12px; }
+  #contact p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    max-width: 440px;
+    margin: 0 auto 28px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 24px;
+    padding: 11px 22px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .contact-btn:hover { opacity: 0.85; text-decoration: none; }
+  .contact-btn.outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    padding: 16px 24px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 680px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-photo { margin: 0 auto; }
+    .hero-badges { justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .guides-list { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .leadership-card { grid-template-columns: 1fr; }
+    .pd-list ul { columns: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-card, .guide-item { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <span class="nav-name">Lauren DeMarzo, MSHC</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#disease-guides">Published</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <!-- Replace the src below with your actual hosted photo URL -->
+    <img
+      class="hero-photo"
+      src="Lauren_DeMarzo_Photo.jpg"
+      alt="Lauren DeMarzo"
+    />
+    <div class="hero-text">
+      <p class="hero-eyebrow">Health Communication Portfolio</p>
+      <h1 class="hero-name">Lauren DeMarzo,<br><span>MSHC</span></h1>
+      <p class="hero-tagline">
+        Transforming complex clinical evidence into clear, compassionate cancer education that moves patients toward informed, healthy decisions.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">15 Years at MSK</span>
+        <span class="badge">Plain Language Writing</span>
+        <span class="badge">Health Literacy</span>
+        <span class="badge">Patient Education</span>
+        <span class="badge">Content Strategy</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Signature pulse divider -->
+<div class="pulse-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,14 L240,14 L270,4 L300,24 L330,4 L360,24 L390,14 L600,14 L620,8 L640,20 L660,8 L680,14 L1440,14" stroke="#1A7A8A" stroke-width="1.5" fill="none"/>
+  </svg>
+</div>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section id="about">
+  <div class="inner">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Health communication rooted in empathy and evidence</h2>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>
+          I am a dedicated health communication writer and strategist with 15 years of experience creating clear, compassionate cancer education resources at Memorial Sloan Kettering Cancer Center. I apply plain language principles and health literacy best practices to translate complex clinical evidence into content that supports patients and caregivers at every stage of their health journey.
+        </p>
+        <p>
+          I thrive in collaborative environments — building partnerships with subject matter experts, clinical teams, design and product teams, and agency partners to bring high-quality health content to life across print and digital channels.
+        </p>
+        <p>
+          My work is grounded in a belief that greater health knowledge empowers every person — regardless of age, background, or reading level — to make confident decisions about their care.
+        </p>
+
+        <!-- Word cloud from 15-year anniversary -->
+        <div class="word-cloud-card">
+          <p>How colleagues at MSK described Lauren on her 15-year work anniversary:</p>
+          <div class="cloud-words">
+            <span>Insightful</span>
+            <span>Empathetic</span>
+            <span>Thoughtful</span>
+            <span>Kind</span>
+            <span>Collaborative</span>
+            <span>Driven</span>
+            <span>Dedicated</span>
+            <span>Creative</span>
+            <span>Passionate</span>
+            <span>Resourceful</span>
+            <span>Proactive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-meta">
+        <h3>Education</h3>
+        <ul>
+          <li>M.S., Health Communication — Boston University, 2013</li>
+          <li>B.A., Political Science — Fordham University, 2006</li>
+          <li>Project Management Certificate — Cornell University, 2018</li>
+        </ul>
+
+        <h3>Location &amp; Contact</h3>
+        <ul>
+          <li>Madison, NJ</li>
+          <li><a href="mailto:laurenashleigh.robinson@gmail.com">laurenashleigh.robinson@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/lauren-demarzo-nynj36" target="_blank" rel="noopener">LinkedIn Profile</a></li>
+        </ul>
+
+        <h3>Core Expertise</h3>
+        <ul>
+          <li>Plain Language &amp; Health Literacy Writing</li>
+          <li>Patient &amp; Caregiver Education</li>
+          <li>Content Strategy &amp; Migration</li>
+          <li>Cross-functional Project Leadership</li>
+          <li>Stakeholder Engagement</li>
+          <li>Community Cancer Education</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORK SAMPLES ─────────────────────────────────────── -->
+<section id="work">
+  <div class="inner">
+    <p class="section-label">Work Samples</p>
+    <h2 class="section-title">Patient education resources I created at MSK</h2>
+
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Print &amp; Digital Brochure</p>
+          <h3>What You Can Do to Prevent Colorectal Cancer</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Project Manager · Memorial Sloan Kettering Cancer Center</p>
+          <p>A patient-facing brochure synthesizing clinical evidence on colorectal cancer risk, screening guidelines, and prevention habits. Translated medical terminology into accessible, plain language for community audiences across varying health literacy levels.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Plain Language Writing</span>
+            <span class="skill-tag">Health Literacy</span>
+            <span class="skill-tag">Cancer Screening</span>
+            <span class="skill-tag">Community Education</span>
+          </div>
+          <!-- Replace href with hosted PDF link or internal anchor -->
+          <a class="work-link" href="#" aria-label="View colorectal cancer brochure">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Print &amp; Digital Brochure</p>
+          <h3>What You Can Do to Prevent Breast Cancer</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Project Manager · Memorial Sloan Kettering Cancer Center</p>
+          <p>A comprehensive, health-literate guide to breast cancer risk assessment, screening schedules, and healthy habits — written for diverse audiences including transgender and nonbinary patients. Developed with clinical partners and aligned to MSK brand standards.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Patient Education</span>
+            <span class="skill-tag">Inclusive Content</span>
+            <span class="skill-tag">Brand Voice</span>
+            <span class="skill-tag">Clinical Collaboration</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View breast cancer prevention brochure">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Patient Education Brochure</p>
+          <h3>What You Can Do to Prevent Cancer Caused by HPV</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Project Manager · Memorial Sloan Kettering Cancer Center</p>
+          <p>Multi-topic education resource covering HPV risk factors, vaccine guidance, and screening pathways across all genders. Developed with subject matter experts and designed to overcome vaccine hesitancy through accessible, evidence-based messaging.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Health Literacy</span>
+            <span class="skill-tag">Vaccine Communication</span>
+            <span class="skill-tag">Subject Matter Expert Collaboration</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View HPV cancer prevention brochure">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Program Guide</p>
+          <h3>Your Guide to the MSK Lung Screening Program</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Project Manager · Memorial Sloan Kettering Cancer Center</p>
+          <p>A patient-centered program guide demystifying lung cancer screening eligibility, the low-dose CT scan process, and MSK's care team — written to reduce barriers to screening among high-risk populations including current and former smokers.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Plain Language</span>
+            <span class="skill-tag">Program Communication</span>
+            <span class="skill-tag">Patient Navigation</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View lung screening guide">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">How-To Guide</p>
+          <h3>Stay Aware, Stay Healthy: How to Do a Breast Self-Exam</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Editor · Memorial Sloan Kettering Cancer Center</p>
+          <p>A step-by-step instructional guide translating clinical self-exam technique into clear, illustrated patient instructions — written inclusively for all genders and designed to build confident health self-advocacy.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Instructional Writing</span>
+            <span class="skill-tag">Plain Language</span>
+            <span class="skill-tag">Inclusive Messaging</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View breast self-exam guide">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Community Education Booklet</p>
+          <h3>Talk With Your Family! Your Guide to Learning Your Family Health History</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Project Manager · Memorial Sloan Kettering Cancer Center</p>
+          <p>An interactive multi-page booklet guiding patients and families through building a family health history — including conversation prompts, fill-in forms, and guidance for adoptees. Built to support community cancer risk education events.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Community Education</span>
+            <span class="skill-tag">Instructional Design</span>
+            <span class="skill-tag">Family Health</span>
+            <span class="skill-tag">Risk Communication</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View family health history guide">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Patient Fact Sheet</p>
+          <h3>Choosing Health Insurance That's Best for You and Your Family</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · Editor · Memorial Sloan Kettering Cancer Center</p>
+          <p>A plain language guide helping MSK patients navigate complex insurance plan types — PPO, HMO, EPO, Medicare, and Medicaid — with practical questions to ask their insurer and clear actions to take. Aligned with MSK's Financial Literacy Program.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Health Insurance Literacy</span>
+            <span class="skill-tag">Financial Navigation</span>
+            <span class="skill-tag">Plain Language</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View health insurance guide">View Sample</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-header">
+          <p class="work-type">Bi-lingual Fact Sheet</p>
+          <h3>Early Cancer Screening Can Save Your Life (English &amp; Spanish)</h3>
+        </div>
+        <div class="work-card-body">
+          <p class="work-role">Writer · MSK Ralph Lauren Center</p>
+          <p>A bilingual (English/Spanish) community-facing screening card distilling national guidelines for cervical, breast, and colorectal cancer into a single actionable reference — designed to reduce screening disparities in diverse communities served by the MSK Ralph Lauren Center.</p>
+          <div class="work-skills">
+            <span class="skill-tag">Health Equity</span>
+            <span class="skill-tag">Bilingual Content</span>
+            <span class="skill-tag">Screening Promotion</span>
+          </div>
+          <a class="work-link" href="#" aria-label="View bilingual screening card">View Sample</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MSK DISEASE GUIDES ───────────────────────────────── -->
+<section id="disease-guides">
+  <div class="inner">
+    <p class="section-label">Published Digital Content</p>
+    <h2 class="section-title">MSK Disease Guides — Contributing Writer &amp; Editor</h2>
+    <p class="guides-intro">
+      As a Senior Health Education Specialist at MSK, I wrote, edited, fact-checked, and migrated content for the MSK Disease Guides — a library of patient-centered digital resources covering cancer types, treatment, continued care, and survivorship. Drawing on my background in integrative medicine and survivorship services, I was regularly assigned to lead the Continued Care sections across multiple disease groups. I collaborated with clinical subject matter experts, design teams, and product teams across all phases of production.
+    </p>
+    <p class="attribution-note">
+      ℹ️ The pages linked below are published by Memorial Sloan Kettering Cancer Center. I contributed to them as a member of the health education writing team, 2022–2026. Links open mskcc.org in a new tab.
+    </p>
+
+    <div class="guides-list">
+
+      <div class="guide-item">
+        <p class="guide-topic">Breast Cancer · Treatment</p>
+        <h3>Breast Cancer Treatment</h3>
+        <p>Patient-centered guide to breast cancer treatment options — including surgery, radiation, chemotherapy, targeted therapies, immunotherapy, and hormone therapy — written in plain language to help patients understand their care plan and prepare for conversations with their doctors.</p>
+        <p class="guide-role">Contributing Writer &amp; Editor, MSK Writing Team · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/breast-cancer/treatment" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Breast Cancer · Continued Care</p>
+        <h3>Breast Cancer Support, Reconstruction, Monitoring and Follow-Up Care</h3>
+        <p>Comprehensive continued care guide covering breast reconstruction options, follow-up monitoring, survivorship support, and integrative resources for patients after breast cancer treatment — developed with clinical and integrative medicine experts.</p>
+        <p class="guide-role">Lead Writer &amp; Editor, Continued Care Section · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/breast-cancer/continued-care" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Breast Cancer · Specialized Program</p>
+        <h3>Lobular Breast Cancer Program</h3>
+        <p>Disease guide for MSK's specialized Lobular Breast Cancer Program — covering the diagnosis, treatment, and care of invasive lobular breast cancer (LBC) for patients in New York and New Jersey. Written to clearly communicate the program's clinical expertise to patients navigating a less common breast cancer subtype.</p>
+        <p class="guide-role">Contributing Writer &amp; Editor, MSK Writing Team · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/breast-cancer/treatment/lobular-breast-cancer-program" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Lung Cancer · Continued Care</p>
+        <h3>Surviving Lung Cancer: Rehab, Follow-Up Care &amp; Support</h3>
+        <p>Survivorship and continued care guide helping lung cancer patients understand what to expect after treatment — covering rehabilitation, follow-up care schedules, tobacco treatment support, and MSK's team-based approach to long-term lung health.</p>
+        <p class="guide-role">Lead Writer &amp; Editor, Continued Care Section · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/lung-cancer/continued-care" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Colorectal Cancer · Continued Care</p>
+        <h3>Colon Cancer Continued Care, Survivorship, Rehab &amp; Support</h3>
+        <p>Continued care resource guiding colon cancer survivors through follow-up care, rehabilitation options, and survivorship support at MSK — written to help patients feel confident and informed in their recovery and monitoring plan.</p>
+        <p class="guide-role">Lead Writer &amp; Editor, Continued Care Section · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/colorectal-cancer/colon-cancer/continued-care" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Head &amp; Neck Cancers · Continued Care</p>
+        <h3>Surviving Mouth &amp; Oral Cancer: Recovery, Follow-Up Care &amp; Support</h3>
+        <p>Continued care guide for mouth and oral cancer survivors covering recovery, jaw and tongue rehabilitation, follow-up care, and MSK's head and neck survivorship support services. Represented here as one example of my continued care writing across all five head and neck cancer disease guides at MSK.</p>
+        <p class="guide-role">Lead Writer &amp; Editor, Continued Care Sections — all 5 Head &amp; Neck Cancer guides · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/head-neck-cancers/mouth-cancer/continued-care" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+      <div class="guide-item">
+        <p class="guide-topic">Head &amp; Neck Cancers · Specialized Program</p>
+        <h3>Thyroid Nodule Assessment Program, Monitoring, and Biopsy</h3>
+        <p>Disease guide for MSK's Thyroid Nodule Assessment Program — explaining what thyroid nodules are, how they are monitored and biopsied, and when further evaluation is needed. Written to help patients understand a complex clinical pathway in clear, reassuring language.</p>
+        <p class="guide-role">Contributing Writer &amp; Editor, MSK Writing Team · 2022–2026</p>
+        <a class="guide-link" href="https://www.mskcc.org/cancer-conditions/head-neck-cancers/thyroid-cancer/treatment/thyroid-nodule-assessment-program" target="_blank" rel="noopener">View on mskcc.org →</a>
+      </div>
+
+    </div>
+
+    <p style="margin-top:24px; font-size:0.84rem; color:var(--mid); font-style:italic;">
+      ℹ️ Head &amp; Neck Cancer note: I wrote and copyedited the Continued Care sections for all five head and neck cancer disease guides at MSK. The mouth and oral cancer page above is one representative example. All pages are published at mskcc.org.
+    </p>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ─────────────────────────────────────────── -->
+<section id="experience">
+  <div class="inner">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">15 years building health education at MSK</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-date">January 2025 – June 2026</p>
+        <p class="timeline-role">Senior Health Education Specialist</p>
+        <p class="timeline-org">Memorial Sloan Kettering Cancer Center</p>
+        <ul class="timeline-bullets">
+          <li>Wrote, edited, and fact-checked cancer education content for MSK disease guides, grounded in health literacy best practices and MSK brand voice.</li>
+          <li>Synthesized peer-reviewed research and clinical evidence into clear, accurate, and compassionate content for diverse patient audiences.</li>
+          <li>Migrated digital content into new patient-centered templates, collaborating with subject matter experts to update and improve disease guides.</li>
+          <li>Maintained an Airtable knowledge base to organize brand differentiators and editorial content for disease guides at scale.</li>
+          <li>Partnered with marketing analytics teams to track content performance using Heap dashboards, using data insights to improve cancer education resources.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">October 2022 – December 2024</p>
+        <p class="timeline-role">Health Education Specialist</p>
+        <p class="timeline-org">Memorial Sloan Kettering Cancer Center</p>
+        <ul class="timeline-bullets">
+          <li>Created and edited accessible cancer education resources for print and digital channels.</li>
+          <li>Led content development and workflow for a cancer screening guideline fact sheet series, aligning cross-functional feedback to meet health literacy standards and deadlines.</li>
+          <li>Developed integrated cancer awareness content plans, writing project briefs, measurable outcomes, and reports for clinical and marketing leadership.</li>
+          <li>Created and reviewed promotional materials and communication assets for community cancer education events.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">January 2022 – September 2022</p>
+        <p class="timeline-role">Senior Project Coordinator</p>
+        <p class="timeline-org">Memorial Sloan Kettering Cancer Center</p>
+        <ul class="timeline-bullets">
+          <li>Led planning of virtual cancer education events for patients, caregivers, and community experts.</li>
+          <li>Built an event outcome measurement framework to evaluate participant experience and inform future program strategy.</li>
+          <li>Managed end-to-end production of a medical nutrition cooking series, overseeing clinical expert collaboration and delivery for patient and community audiences.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">May 2013 – December 2021</p>
+        <p class="timeline-role">Project Coordinator, Education and Outreach</p>
+        <p class="timeline-org">Memorial Sloan Kettering Cancer Center</p>
+        <ul class="timeline-bullets">
+          <li>Led MSK Integrative Medicine patient experience and outreach programs across the full project lifecycle, authoring SOPs, project plans, and coordinating cross-functional teams.</li>
+          <li>Collaborated with clinical leaders to develop and launch continuing education courses for internal and external healthcare provider audiences.</li>
+          <li>Launched a monthly department e-newsletter (8,000+ subscribers), social media strategy, and community outreach programs.</li>
+          <li>Increased online continuing education program revenue by 22.8% in 2017.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="inner">
+    <p class="section-label">Skills &amp; Tools</p>
+    <h2 class="section-title">What I bring to every project</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Writing &amp; Content</h3>
+        <ul>
+          <li>Plain Language Writing</li>
+          <li>Health Literacy Standards</li>
+          <li>Patient &amp; Caregiver Education</li>
+          <li>Digital Content Strategy</li>
+          <li>Copyediting &amp; Proofreading</li>
+          <li>Brand Voice Writing</li>
+          <li>SEO Writing Principles</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Project Leadership</h3>
+        <ul>
+          <li>Cross-functional Collaboration</li>
+          <li>Content Migration</li>
+          <li>Stakeholder Engagement</li>
+          <li>Project Planning &amp; SOPs</li>
+          <li>KPI Frameworks</li>
+          <li>Event Management</li>
+          <li>Education Program Development</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Platforms</h3>
+        <ul>
+          <li>Airtable (Knowledge Management)</li>
+          <li>Heap (Analytics Dashboards)</li>
+          <li>Microsoft Office Suite</li>
+          <li>Project Management Tools</li>
+          <li>Digital CMS Platforms</li>
+          <li>Social Media Strategy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────────────────── -->
+<section id="education">
+  <div class="inner">
+    <p class="section-label">Education &amp; Development</p>
+    <h2 class="section-title">Continuous investment in the craft</h2>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <p class="year">2013</p>
+        <h3>Master of Science, Health Communication</h3>
+        <p class="school">Boston University</p>
+      </div>
+      <div class="edu-card">
+        <p class="year">2006</p>
+        <h3>Bachelor of Arts, Political Science</h3>
+        <p class="school">Fordham University</p>
+      </div>
+      <div class="edu-card">
+        <p class="year">2018</p>
+        <h3>Project Management Certificate</h3>
+        <p class="school">Cornell University</p>
+      </div>
+      <div class="edu-card">
+        <p class="year">In Progress</p>
+        <h3>Certified Patient and Health Education (CPHE)</h3>
+        <p class="school">Professional Certification</p>
+      </div>
+    </div>
+
+    <div class="pd-list">
+      <h3>Professional Development</h3>
+      <ul>
+        <li>IHA Health Literacy Conference, 2025 &amp; 2024</li>
+        <li>LinkedIn Learning: Principles of SEO Writing, 2025</li>
+        <li>MSK Marketing &amp; Communication Journal Club — Presenter, 2024 &amp; 2023</li>
+        <li>CDC: Communicating Science Clearly, 2023</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEADERSHIP ─────────────────────────────────────────── -->
+<section id="leadership">
+  <div class="inner">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Building community inside and outside the organization</h2>
+
+    <div class="leadership-card">
+      <div>
+        <h3>Co-Leader, MSK Women on the Move (MWM)</h3>
+        <p class="sub">Employee Resource Network — Memorial Sloan Kettering Cancer Center · December 2021 – Present</p>
+        <p>
+          Co-leading an enterprise-wide employee resource network with 2,000+ members, driving strategic vision and program development. Managing a 25-person steering committee, designing live programming and workshops, and leading internal communication plans that expand the network's reach across MSK.
+        </p>
+      </div>
+      <div class="leadership-stat">
+        <p class="num">2,000+</p>
+        <p class="label">Network members led</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's work together</h2>
+    <p>I'm open to new opportunities in health communication, patient education, and content strategy. I'd love to connect.</p>
+    <div class="contact-links">
+      <a class="contact-btn" href="mailto:laurenashleigh.robinson@gmail.com">Email Me</a>
+      <a class="contact-btn outline" href="https://www.linkedin.com/in/lauren-demarzo-nynj36" target="_blank" rel="noopener">LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Lauren DeMarzo, MSHC &nbsp;·&nbsp; Health Communication Portfolio
+</footer>
+
+</body>
+</html>
